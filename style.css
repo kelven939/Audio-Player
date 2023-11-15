@@ -1,0 +1,74 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="file"] {
+    display: block;
+    margin-bottom: 20px;
+}
+
+#playlist {
+    margin-top: 20px;
+}
+
+#musicDetails {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#artistImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+#songDetails {
+    flex-grow: 1;
+}
+
+#songTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#artistName {
+    color: #666;
+}
+
+audio {
+    width: 100%;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    #musicDetails {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+    }
+
+    #artistImage {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
