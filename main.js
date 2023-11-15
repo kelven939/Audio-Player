@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Auto-play first track
                     if (i === 0) {
-                        playMusic(musicData);
+                        playMusic(0);
                     }
                 };
 
