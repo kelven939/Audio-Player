@@ -23,11 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Update playlist
                     updatePlaylist();
-
-                    // Auto-play first track
-                    if (i === 0) {
-                        playMusic(0);
-                    }
                 };
 
                 reader.readAsDataURL(file);
@@ -57,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const musicData = musicList[index];
 
         audioPlayer.src = musicData.src;
+        audioPlayer.load(); // Carrega a nova música
         audioPlayer.play();
     }
 
