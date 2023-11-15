@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
   
     function addSongs() {
       const files = fileInput.files;
-      
+  
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const song = { 
+        const song = {
           name: file.name,
           url: URL.createObjectURL(file)
         };
@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function playSong(index) {
       if (storedSongs.length > 0 && index >= 0 && index < storedSongs.length) {
         audio.src = storedSongs[index].url;
+        audio.load(); // Adicionado para garantir que a nova música seja carregada
         audio.play();
       }
     }
