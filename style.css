@@ -11,10 +11,12 @@ body {
   
   .container {
     display: flex;
+    text-align: center;
+  }
+  .cont {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    text-align: center;
   }
   
   h1 {
