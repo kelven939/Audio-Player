@@ -1,61 +1,22 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const musicInput = document.getElementById("musicInput");
-    const playlist = document.getElementById("playlist");
-    const audioPlayer = document.getElementById("audioPlayer");
-
-    musicInput.addEventListener("change", function (event) {
-        const files = event.target.files;
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-
-            if (file.type.startsWith("audio/")) {
-                const reader = new FileReader();
-
-                reader.onload = function (e) {
-                    const musicData = {
-                        title: file.name,
-                        src: e.target.result
-                    };
-
-                    // Save music data to localStorage
-                    saveMusicToLocalStorage(musicData);
-
-                    // Update playlist
-                    updatePlaylist();
-                };
-
-                reader.readAsDataURL(file);
-            }
-        }
+document.addEventListener('DOMContentLoaded', function () {
+    const playlist = document.getElementById('playlist');
+    const audio = document.getElementById('audio');
+  
+    // Verificar se há músicas no localStorage
+    const storedSongs = JSON.parse(localStorage.getItem('songs')) || [];
+  
+    // Adicionar músicas ao playlist
+    storedSongs.forEach((song, index) => {
+      const li = document.createElement('li');
+      li.textContent = `Música ${index + 1}`;
+      li.addEventListener('click', () => playSong(index));
+      playlist.appendChild(li);
     });
-
-    function saveMusicToLocalStorage(musicData) {
-        let musicList = JSON.parse(localStorage.getItem("musicList")) || [];
-        musicList.push(musicData);
-        localStorage.setItem("musicList", JSON.stringify(musicList));
+  
+    function playSong(index) {
+      if (storedSongs.length > 0 && index >= 0 && index < storedSongs.length) {
+        audio.src = storedSongs[index].url;
+        audio.play();
+      }
     }
-
-    function updatePlaylist() {
-        const musicList = JSON.parse(localStorage.getItem("musicList")) || [];
-        playlist.innerHTML = "";
-
-        musicList.forEach(function (music, index) {
-            const listItem = document.createElement("div");
-            listItem.innerHTML = `<div class="playlist-item" onclick="playMusic(${index})">${index + 1}. ${music.title}</div>`;
-            playlist.appendChild(listItem);
-        });
-    }
-
-    function playMusic(index) {
-        const musicList = JSON.parse(localStorage.getItem("musicList")) || [];
-        const musicData = musicList[index];
-
-        audioPlayer.src = musicData.src;
-        audioPlayer.load(); // Carrega a nova música
-        audioPlayer.play();
-    }
-
-    // Initial playlist update
-    updatePlaylist();
-});
+  });  
